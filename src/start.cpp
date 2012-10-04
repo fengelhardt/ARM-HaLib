@@ -66,13 +66,16 @@ void clockSetup(void)
     static Register* const pmcMorReg    = reinterpret_cast<Register*>(0x400E0420);
     static Register* const pmcMckrReg   = reinterpret_cast<Register*>(0x400E0430);
     static Register* const pmcPllAReg   = reinterpret_cast<Register*>(0x400E0428);
+    static Register* const pmcPllBReg   = reinterpret_cast<Register*>(0x400E042C);
     static Register* const pmcSrReg     = reinterpret_cast<Register*>(0x400E0468);
+    static Register* const pmcUsbReg    = reinterpret_cast<Register*>(0x400E0438);
     static const uint32_t cssMask       = 0x3 << 0;
     static const uint32_t cssMain       = 0x1 << 0;
     static const uint32_t cssPllA       = 0x2 << 0;
-    static const uint32_t pres2         = PRES_EXP << 4;
+    static const uint32_t pres          = PRES_EXP << 4;
     static const uint32_t masterReady   = 0x1 << 3;
     static const uint32_t lockA         = 0x1 << 1;
+    static const uint32_t lockB         = 0x1 << 2;
     static const uint32_t pllOne        = 0x1 << 29;
     static const uint8_t  pllMulShift   = 16;
     static const uint32_t pllMulMask    = 0x7ff << pllMulShift;
@@ -89,13 +92,16 @@ void clockSetup(void)
     static const uint32_t key           = 0x37<<16;
     static const uint32_t selInProgress = 1<<16;
     static const uint32_t rc12MHz       = 0x2<<4;
+    static const uint32_t usbPllB       = 1<<0;
+    static const uint8_t  usbDivShift   = 8;
 
     *eefcModeReg = 1<<8;
 
     uint32_t timeout;
 
-    static const uint32_t pllConfig    = pllOne | ((PLL_MUL-1) << pllMulShift) | (1 << pllCountShift) | (PLL_DIV << pllDivShift);
-    static const uint32_t masterConfig = pres2 | cssPllA;
+    static const uint32_t pllAConfig    = pllOne | ((PLL_MUL-1) << pllMulShift) | (1 << pllCountShift) | (PLL_DIV << pllDivShift);
+    static const uint32_t pllBConfig    = pllOne | ((USB_MUL-1) << pllMulShift) | (1 << pllCountShift) | (USB_DIV << pllDivShift);
+    static const uint32_t masterConfig = pres | cssPllA;
     static const uint32_t xtalWaitCount = 8 << xtalWaitShift;
 
     *pmcMorReg = key | enableRC | enableXtal | xtalWaitCount;
@@ -106,7 +112,7 @@ void clockSetup(void)
     timeout=0;
     while (!(*pmcSrReg & selInProgress) & timeout++<=0xFFFFFFFF);
 
-    *pmcPllAReg = pllConfig;
+    *pmcPllAReg = pllAConfig;
     timeout=0;
     while(!(*pmcSrReg & lockA) & timeout++<=0xFFFFFFFF);
 
@@ -117,6 +123,12 @@ void clockSetup(void)
     *pmcMckrReg = masterConfig;
     timeout=0;
     while(!(*pmcSrReg & masterReady) & timeout++<=0xFFFFFFFF);
+
+    *pmcPllBReg = pllBConfig;
+    timeout=0;
+    while(!(*pmcSrReg & lockB) & timeout++<=0xFFFFFFFF);
+
+    *pmcUsbReg = usbPllB | (((1<<USB_EXP)-1) << usbDivShift);
     
 }
 
