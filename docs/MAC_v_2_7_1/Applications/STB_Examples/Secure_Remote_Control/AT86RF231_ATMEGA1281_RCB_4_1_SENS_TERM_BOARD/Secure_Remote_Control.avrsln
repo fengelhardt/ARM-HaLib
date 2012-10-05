@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# AvrStudio Solution File, Format Version 11.00
+Project("{D1100916-62DA-4D80-A9B4-55A1E7CCEEB3}") = "Secure_Remote_Control", "Secure_Remote_Control.avrgccproj", "{2A5EF900-D01E-448F-B522-F72AEE4F4C0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A5EF900-D01E-448F-B522-F72AEE4F4C0B}.Debug|AVR.ActiveCfg = Release|AVR
+		{2A5EF900-D01E-448F-B522-F72AEE4F4C0B}.Debug|AVR.Build.0 = Release|AVR
+		{2A5EF900-D01E-448F-B522-F72AEE4F4C0B}.Release|AVR.ActiveCfg = Release|AVR
+		{2A5EF900-D01E-448F-B522-F72AEE4F4C0B}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# AvrStudio Solution File, Format Version 11.00
+Project("{D1100916-62DA-4D80-A9B4-55A1E7CCEEB3}") = "Performance_test_evk", "Performance_test_evk.avrgccproj", "{645E3FAD-AD8A-4F55-9A67-622F1E5ACDF9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{645E3FAD-AD8A-4F55-9A67-622F1E5ACDF9}.Debug|AVR.ActiveCfg = Debug|AVR
+		{645E3FAD-AD8A-4F55-9A67-622F1E5ACDF9}.Debug|AVR.Build.0 = Debug|AVR
+		{645E3FAD-AD8A-4F55-9A67-622F1E5ACDF9}.Release|AVR.ActiveCfg = Release|AVR
+		{645E3FAD-AD8A-4F55-9A67-622F1E5ACDF9}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

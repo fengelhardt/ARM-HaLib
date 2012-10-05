@@ -1,0 +1,38 @@
+# -----------------------------------------------------------------------------
+# This file _may_ be included in a projects makefile (before 1st make target). 
+# It enables flashing/resetting the target device through optional make targets. 
+# Since not all customers may like OpenOCD, they might write their own flash 
+# script or completely skip its inclusion.
+# -----------------------------------------------------------------------------
+
+OPENOCDPATH = "C:/Program Files/OpenOCD_custom"
+OPENOCD     = $(OPENOCDPATH)/bin/openocd.exe
+
+# when having problems resetting/flashing the arm core (e.g. 'JTAG-Error 
+# while reading CPSR'), try to slow down the JTAG clock ('jtag_khz' in board config).
+# By the way, it is recommended to skip a jtag speed definition since this 
+# enables openocd to dynamically scale the frequency used. 
+OOFLAGS0 = -s $(OPENOCDPATH) -f target/at91sam3sXX.cfg -f interface/_icboard.cfg
+#OOFLAGS0 += -d0
+OOFLAGS0 += -c init
+OOFLAGS1 += -c "halt"
+OOFLAGS2 += -c "flash write_bank 0 
+OOFLAGS3 += 0"
+OOFLAGS4 += -c "reset run"
+OOFLAGS4 += -c shutdown
+
+OOFLAGS6 = -c "at91sam3 gpnvm show all"
+OOFLAGS7 = -c "at91sam3 gpnvm set 1"
+OOFLAGS8 = -c "at91sam3 gpnvm clear 1"
+
+totarget:
+	$(OPENOCD) $(OOFLAGS0) $(OOFLAGS1) $(OOFLAGS2) $(OUTPUT)-flash.bin $(OOFLAGS3) $(OOFLAGS4)   	
+
+gpnvmset:	
+	$(OPENOCD) $(OOFLAGS0) $(OOFLAGS1) $(OOFLAGS7) $(OOFLAGS4) 
+
+gpnvmclr:	
+	$(OPENOCD) $(OOFLAGS0) $(OOFLAGS1) $(OOFLAGS8) $(OOFLAGS4) 
+	
+reset:
+	$(OPENOCD) $(OOFLAGS0) $(OOFLAGS4)

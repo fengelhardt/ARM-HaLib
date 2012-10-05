@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# AvrStudio Solution File, Format Version 11.00
+Project("{D1100916-62DA-4D80-A9B4-55A1E7CCEEB3}") = "Device_Beacon_App", "Device_Beacon_App.avrgccproj", "{81664D3D-B2C1-49BD-8C41-245F403A20CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81664D3D-B2C1-49BD-8C41-245F403A20CE}.Debug|AVR.ActiveCfg = Release|AVR
+		{81664D3D-B2C1-49BD-8C41-245F403A20CE}.Debug|AVR.Build.0 = Release|AVR
+		{81664D3D-B2C1-49BD-8C41-245F403A20CE}.Release|AVR.ActiveCfg = Release|AVR
+		{81664D3D-B2C1-49BD-8C41-245F403A20CE}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

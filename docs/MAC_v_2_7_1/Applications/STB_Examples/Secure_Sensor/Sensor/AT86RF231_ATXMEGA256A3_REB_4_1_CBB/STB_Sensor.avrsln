@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# AvrStudio Solution File, Format Version 11.00
+Project("{D1100916-62DA-4D80-A9B4-55A1E7CCEEB3}") = "STB_Sensor", "STB_Sensor.avrgccproj", "{524C694D-AA7E-4BF7-9EEF-64340DF1BA70}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{524C694D-AA7E-4BF7-9EEF-64340DF1BA70}.Debug|AVR.ActiveCfg = Release|AVR
+		{524C694D-AA7E-4BF7-9EEF-64340DF1BA70}.Debug|AVR.Build.0 = Release|AVR
+		{524C694D-AA7E-4BF7-9EEF-64340DF1BA70}.Release|AVR.ActiveCfg = Release|AVR
+		{524C694D-AA7E-4BF7-9EEF-64340DF1BA70}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

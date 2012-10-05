@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# AvrStudio Solution File, Format Version 11.00
+Project("{D1100916-62DA-4D80-A9B4-55A1E7CCEEB3}") = "STB_Data_Sink", "STB_Data_Sink.avrgccproj", "{1BFDAC53-0CCE-4344-898C-1935E9F93CBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1BFDAC53-0CCE-4344-898C-1935E9F93CBC}.Debug|AVR.ActiveCfg = Release|AVR
+		{1BFDAC53-0CCE-4344-898C-1935E9F93CBC}.Debug|AVR.Build.0 = Release|AVR
+		{1BFDAC53-0CCE-4344-898C-1935E9F93CBC}.Release|AVR.ActiveCfg = Release|AVR
+		{1BFDAC53-0CCE-4344-898C-1935E9F93CBC}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,41 @@
+/**
+ * @file Beacon_Application.txt
+ *
+ * @brief  Description of MAC Example - Beacon Application
+ *
+ * $Id: Beacon_Application.txt 28122 2011-08-18 06:22:41Z yogesh.bellan $
+ *
+ */
+/**
+ *  @author
+ *      Atmel Corporation: http://www.atmel.com
+ *      Support email: avr@atmel.com
+ */
+/*
+ * Copyright (c) 2008, Atmel Corporation All rights reserved.
+ *
+ * Licensed under Atmel’s Limited License Agreement --> EULA.txt
+ */
+
+MAC Example : Beacon Application
+
+
+Brief Description :
+
+The basic MAC Example Beacon Application deploys a beacon-enabled network with star topology.
+The coordinator starts a PAN at channel DEFAULT_CHANNEL with the PAN ID DEFAULT_PAN_ID.
+
+The coordinator starts a beaconing network and transmits user data within beacon payload of transmitted beacon frames.
+The device scans for this network,sync up with the coordinator and associates to the coordinator.The devices receive
+these beacon frames, extract the receveived user data from the coordinator ,print the received data on the hyper
+terminal and also sends the extracted beacon payload back to the coordinator.
+
+The coordinator also transmits broadcast data frames periodically.The devices receive these broadcast data frames
+and increase a counter.
+
+The coordinator also puts the data in the indirect queue periodically and transmits data frames based on the
+periodic poll request from the device.
+
+The results of the proper data transmission/reception are printed to a terminal program via Serial I/O (UART or USB).
+
+For demonstration purposes the coordinator's configuration is limited to associate maximum of 100 devices.

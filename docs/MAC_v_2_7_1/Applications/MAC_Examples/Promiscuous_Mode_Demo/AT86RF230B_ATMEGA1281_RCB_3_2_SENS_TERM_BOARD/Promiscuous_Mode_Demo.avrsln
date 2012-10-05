@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# AvrStudio Solution File, Format Version 11.00
+Project("{D1100916-62DA-4D80-A9B4-55A1E7CCEEB3}") = "Promiscuous_Mode_Demo", "Promiscuous_Mode_Demo.avrgccproj", "{4856BD1E-A094-44B3-8DDE-7DF58771C2F5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4856BD1E-A094-44B3-8DDE-7DF58771C2F5}.Debug|AVR.ActiveCfg = Release|AVR
+		{4856BD1E-A094-44B3-8DDE-7DF58771C2F5}.Debug|AVR.Build.0 = Release|AVR
+		{4856BD1E-A094-44B3-8DDE-7DF58771C2F5}.Release|AVR.ActiveCfg = Release|AVR
+		{4856BD1E-A094-44B3-8DDE-7DF58771C2F5}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

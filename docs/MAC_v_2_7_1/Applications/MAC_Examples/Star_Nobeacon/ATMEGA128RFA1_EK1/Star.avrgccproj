@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>5.0</ProjectVersion>
+    <ProjectGuid>42783817-9049-44bb-b288-41c53511e7ff</ProjectGuid>
+    <avrdevice>ATMEGA128RFA1</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <OutputType>Executable</OutputType>
+    <Language>C</Language>
+    <OutputFile>Star.elf</OutputFile>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <UseGlobalToolchain>True</UseGlobalToolchain>
+    <ToolchainDirPath>
+    </ToolchainDirPath>
+    <MakeDirPath>
+    </MakeDirPath>
+    <GlobalToolchainPath>C:\Program Files\Atmel\AVR Studio 5.0\AVR ToolChain\bin</GlobalToolchainPath>
+    <AvrGccProjectExtensions>
+    </AvrGccProjectExtensions>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <ToolchainSettings>
+      <AvrGcc>
+  <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>true</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+  <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>true</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+  <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.optimization.PackStructureMembers>true</avrgcc.compiler.optimization.PackStructureMembers>
+  <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>true</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+  <avrgcc.compiler.warnings.AllWarnings>true</avrgcc.compiler.warnings.AllWarnings>
+  <avrgcc.compiler.miscellaneous.OtherFlags>-gdwarf-2 -std=gnu99 </avrgcc.compiler.miscellaneous.OtherFlags>
+  <avrgcc.assembler.general.AssemblerFlags>-Wall -gdwarf-2 -std=gnu99 -Os -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums</avrgcc.assembler.general.AssemblerFlags>
+</AvrGcc>
+    </ToolchainSettings>
+    <MemorySettings>
+      <MemorySegments>
+  <InitialStack IsEnabled="0">
+    <Address />
+  </InitialStack>
+</MemorySegments>
+    </MemorySettings>
+    <GenerateHexFile>True</GenerateHexFile>
+    <GenerateMapFile>True</GenerateMapFile>
+    <GenerateListFile>True</GenerateListFile>
+    <GenerateEepFile>True</GenerateEepFile>
+    <UsesExternalMakeFile>True</UsesExternalMakeFile>
+    <OutputDirectory>.\GCC</OutputDirectory>
+    <ExternalMakeFilePath>.\GCC\Makefile</ExternalMakeFilePath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ToolchainSettings>
+      <AvrGcc>
+  <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>true</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+  <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>true</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+  <avrgcc.compiler.optimization.level>Optimize (-O1)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.optimization.PackStructureMembers>true</avrgcc.compiler.optimization.PackStructureMembers>
+  <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>true</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+  <avrgcc.compiler.warnings.AllWarnings>true</avrgcc.compiler.warnings.AllWarnings>
+  <avrgcc.compiler.miscellaneous.OtherFlags>-gdwarf-2 -std=gnu99 </avrgcc.compiler.miscellaneous.OtherFlags>
+  <avrgcc.assembler.general.AssemblerFlags>-Wall -gdwarf-2 -std=gnu99 -O1 -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums</avrgcc.assembler.general.AssemblerFlags>
+</AvrGcc>
+    </ToolchainSettings>
+    <MemorySettings>
+      <MemorySegments>
+  <InitialStack IsEnabled="0">
+    <Address />
+  </InitialStack>
+</MemorySegments>
+    </MemorySettings>
+    <GenerateHexFile>True</GenerateHexFile>
+    <GenerateMapFile>True</GenerateMapFile>
+    <GenerateListFile>True</GenerateListFile>
+    <GenerateEepFile>True</GenerateEepFile>
+    <UsesExternalMakeFile>True</UsesExternalMakeFile>
+    <OutputDirectory>.\GCC</OutputDirectory>
+    <ExternalMakeFilePath>.\GCC\Makefile_Debug</ExternalMakeFilePath>
+  </PropertyGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\AvrGCC.targets" />
+  <ItemGroup>
+    <Compile Include="..\Inc\app_config.h">
+      <SubType>compile</SubType>
+      <Link>app_config.h</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\Resources\Buffer_Management\Inc\bmm.h">
+      <SubType>compile</SubType>
+      <Link>bmm.h</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\Resources\Queue_Management\Inc\qmm.h">
+      <SubType>compile</SubType>
+      <Link>qmm.h</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\PAL\Inc\pal.h">
+      <SubType>compile</SubType>
+      <Link>pal.h</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\TAL\Inc\tal.h">
+      <SubType>compile</SubType>
+      <Link>tal.h</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Inc\mac_api.h">
+      <SubType>compile</SubType>
+      <Link>mac_api.h</Link>
+    </Compile>
+    <Compile Include="..\Src\main.c">
+      <SubType>compile</SubType>
+      <Link>main.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\PAL\MEGA_RF\ATMEGA128RFA1\Src\pal_irq.c">
+      <SubType>compile</SubType>
+      <Link>pal_irq.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\PAL\MEGA_RF\ATMEGA128RFA1\Boards\EK1\pal_board.c">
+      <SubType>compile</SubType>
+      <Link>pal_board.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\PAL\MEGA_RF\Generic\Src\pal_utils.c">
+      <SubType>compile</SubType>
+      <Link>pal_utils.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\PAL\MEGA_RF\Generic\Src\pal.c">
+      <SubType>compile</SubType>
+      <Link>pal.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\PAL\MEGA_RF\ATMEGA128RFA1\Src\pal_sio_hub.c">
+      <SubType>compile</SubType>
+      <Link>pal_sio_hub.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\PAL\MEGA_RF\ATMEGA128RFA1\Src\pal_timer.c">
+      <SubType>compile</SubType>
+      <Link>pal_timer.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\PAL\MEGA_RF\Generic\Src\pal_uart.c">
+      <SubType>compile</SubType>
+      <Link>pal_uart.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\PAL\MEGA_RF\ATMEGA128RFA1\Src\pal_usb_ftdi.c">
+      <SubType>compile</SubType>
+      <Link>pal_usb_ftdi.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\TAL\ATMEGARF_TAL_1\Src\tal_tx.c">
+      <SubType>compile</SubType>
+      <Link>tal_tx.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\TAL\ATMEGARF_TAL_1\Src\tal.c">
+      <SubType>compile</SubType>
+      <Link>tal.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\TAL\ATMEGARF_TAL_1\Src\tal_ed.c">
+      <SubType>compile</SubType>
+      <Link>tal_ed.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\TAL\ATMEGARF_TAL_1\Src\tal_init.c">
+      <SubType>compile</SubType>
+      <Link>tal_init.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\TAL\ATMEGARF_TAL_1\Src\tal_irq_handler.c">
+      <SubType>compile</SubType>
+      <Link>tal_irq_handler.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\TAL\ATMEGARF_TAL_1\Src\tal_pib.c">
+      <SubType>compile</SubType>
+      <Link>tal_pib.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\TAL\ATMEGARF_TAL_1\Src\tal_pwr_mgmt.c">
+      <SubType>compile</SubType>
+      <Link>tal_pwr_mgmt.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\TAL\ATMEGARF_TAL_1\Src\tal_rx.c">
+      <SubType>compile</SubType>
+      <Link>tal_rx.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\TAL\ATMEGARF_TAL_1\Src\tal_rx_enable.c">
+      <SubType>compile</SubType>
+      <Link>tal_rx_enable.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\TAL\ATMEGARF_TAL_1\Src\tal_slotted_csma.c">
+      <SubType>compile</SubType>
+      <Link>tal_slotted_csma.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_tx_coord_realignment_command.c">
+      <SubType>compile</SubType>
+      <Link>mac_tx_coord_realignment_command.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_associate.c">
+      <SubType>compile</SubType>
+      <Link>mac_associate.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_beacon.c">
+      <SubType>compile</SubType>
+      <Link>mac_beacon.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_callback_wrapper.c">
+      <SubType>compile</SubType>
+      <Link>mac_callback_wrapper.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_data_ind.c">
+      <SubType>compile</SubType>
+      <Link>mac_data_ind.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_data_req.c">
+      <SubType>compile</SubType>
+      <Link>mac_data_req.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_disassociate.c">
+      <SubType>compile</SubType>
+      <Link>mac_disassociate.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_dispatcher.c">
+      <SubType>compile</SubType>
+      <Link>mac_dispatcher.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac.c">
+      <SubType>compile</SubType>
+      <Link>mac.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_mcps_data.c">
+      <SubType>compile</SubType>
+      <Link>mac_mcps_data.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_misc.c">
+      <SubType>compile</SubType>
+      <Link>mac_misc.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_orphan.c">
+      <SubType>compile</SubType>
+      <Link>mac_orphan.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_pib.c">
+      <SubType>compile</SubType>
+      <Link>mac_pib.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_poll.c">
+      <SubType>compile</SubType>
+      <Link>mac_poll.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_process_beacon_frame.c">
+      <SubType>compile</SubType>
+      <Link>mac_process_beacon_frame.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_process_tal_tx_frame_status.c">
+      <SubType>compile</SubType>
+      <Link>mac_process_tal_tx_frame_status.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_rx_enable.c">
+      <SubType>compile</SubType>
+      <Link>mac_rx_enable.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_scan.c">
+      <SubType>compile</SubType>
+      <Link>mac_scan.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_start.c">
+      <SubType>compile</SubType>
+      <Link>mac_start.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\MAC\Src\mac_sync.c">
+      <SubType>compile</SubType>
+      <Link>mac_sync.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\Resources\Buffer_Management\Src\bmm.c">
+      <SubType>compile</SubType>
+      <Link>bmm.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\Resources\Queue_Management\Src\qmm.c">
+      <SubType>compile</SubType>
+      <Link>qmm.c</Link>
+    </Compile>
+  </ItemGroup>
+</Project>

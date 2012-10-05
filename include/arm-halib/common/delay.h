@@ -9,7 +9,7 @@ namespace driver
 {
     struct SysTickTimer
     {
-        static void wait(uint64_t value, bool div8 = true)
+        static void wait(uint32_t value, bool div8 = true)
         {
             static const uint32_t enable     = 1<<0;
             static const uint32_t intEnable  = 1<<1;

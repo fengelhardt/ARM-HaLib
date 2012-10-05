@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# AvrStudio Solution File, Format Version 11.00
+Project("{D1100916-62DA-4D80-A9B4-55A1E7CCEEB3}") = "Secure_Coordinator", "Secure_Coordinator.avrgccproj", "{73D6AAEB-9C95-45EF-9B62-285DC2E9F772}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73D6AAEB-9C95-45EF-9B62-285DC2E9F772}.Debug|AVR.ActiveCfg = Release|AVR
+		{73D6AAEB-9C95-45EF-9B62-285DC2E9F772}.Debug|AVR.Build.0 = Release|AVR
+		{73D6AAEB-9C95-45EF-9B62-285DC2E9F772}.Release|AVR.ActiveCfg = Release|AVR
+		{73D6AAEB-9C95-45EF-9B62-285DC2E9F772}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

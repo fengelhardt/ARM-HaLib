@@ -1,0 +1,35 @@
+/**
+ * @file LowPower_Sensor.txt
+ *
+ * @brief  Description of TINY_TAL Example LowPower_Sensor
+ *
+ * @author
+ *      dresden elektronik: http://www.dresden-elektronik.de
+ *      Support email: support@dresden-elektronik.de
+ */
+/*
+ * Copyright (c) 2011, dresden elektronik All rights reserved.
+ *
+ */
+
+TINY_TAL Example LowPower_Sensor
+
+
+Installation
+
+Take two nodes operating in the same RF band (either Sub-GHz or 2.4-GHz), one 
+will become the receiver, the other the transmitter. For the latter, only 
+deRFnode-based one are supported currently. 
+
+Then flash the provided binaries into the respective devices. Connect the 
+receiver node to your PC and open a terminal program (required settings:
+115200kbit/s, 8N1, no flow control, the device manager tells you the required
+virtual COM-Port number). 
+
+Last but not least power up the transmitter node. It will periodically transmit 
+its current sensor parameters to the receiver while sleeping most of the time.
+By this, it perfectly suits battery-powered operation. (Powering it via DC- 
+or USB is also possible of course, but does not make much sense. When using 
+USB ensure the device drivers have been installed correctly, otherwise the 
+device will not start up)!
+ 

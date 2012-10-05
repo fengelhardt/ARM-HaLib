@@ -183,7 +183,7 @@ extern "C"
     void init(void) __attribute__((section(".init"),naked));
     void init()
     {
-        disableInterrupts();
+//        disableInterrupts();
         watchdogDisable();
         frameSetup();
         clockSetup();

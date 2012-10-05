@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>5.0</ProjectVersion>
+    <ProjectGuid>{0f8f6972-625d-4c3a-91ed-a716618a2f8f}</ProjectGuid>
+    <avrdevice>AT32UC3B1128</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <OutputType>Executable</OutputType>
+    <Language>C</Language>
+    <OutputFile>$(MSBuildProjectName).elf</OutputFile>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <UseGlobalToolchain>True</UseGlobalToolchain>
+    <ToolchainDirPath>
+    </ToolchainDirPath>
+    <MakeDirPath>
+    </MakeDirPath>
+    <GlobalToolchainPath>D:\Program Files\Atmel\AVR Studio 5.0\AVR ToolChain\bin</GlobalToolchainPath>
+    <AvrGccProjectExtensions>
+    </AvrGccProjectExtensions>
+    <AssemblyName>GCC</AssemblyName>
+    <Name>Star_Push_Button</Name>
+    <RootNamespace>GCC</RootNamespace>
+    <avrtool>com.atmel.avrdbg.tool.jtagicemkii</avrtool>
+    <avrtoolinterface>JTAG</avrtoolinterface>
+    <com_atmel_avrdbg_tool_jtagicemkii>
+      <ToolType>com.atmel.avrdbg.tool.jtagicemkii</ToolType>
+      <ToolName>JTAGICE mkII</ToolName>
+      <ToolNumber>070000004DF6</ToolNumber>
+      <Channel>
+        <host>127.0.0.1</host>
+        <port>2445</port>
+        <ssl>False</ssl>
+      </Channel>
+      <ToolOptions>
+        <InterfaceName>JTAG</InterfaceName>
+        <InterfaceProperties>
+          <JtagDbgClock>0</JtagDbgClock>
+          <JtagProgClock>1000000</JtagProgClock>
+          <IspClock>150000</IspClock>
+          <JtagInChain>false</JtagInChain>
+          <JtagEnableExtResetOnStartSession>false</JtagEnableExtResetOnStartSession>
+          <JtagDevicesBefore>0</JtagDevicesBefore>
+          <JtagDevicesAfter>0</JtagDevicesAfter>
+          <JtagInstrBitsBefore>0</JtagInstrBitsBefore>
+          <JtagInstrBitsAfter>0</JtagInstrBitsAfter>
+        </InterfaceProperties>
+      </ToolOptions>
+    </com_atmel_avrdbg_tool_jtagicemkii>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <ToolchainSettings>
+      <AvrGcc32>
+        <avr32gcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</avr32gcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
+        <avr32gcc.compiler.optimization.level>Optimize for size (-Os)</avr32gcc.compiler.optimization.level>
+        <avr32gcc.compiler.optimization.UseAssemblerForPseudoInstructions>True</avr32gcc.compiler.optimization.UseAssemblerForPseudoInstructions>
+        <avr32gcc.compiler.warnings.AllWarnings>True</avr32gcc.compiler.warnings.AllWarnings>
+        <avr32gcc.linker.optimization.GarbageCollectUnusedSections>True</avr32gcc.linker.optimization.GarbageCollectUnusedSections>
+        <avr32gcc.linker.optimization.PutReadOnlyDataInWritableDataSection>True</avr32gcc.linker.optimization.PutReadOnlyDataInWritableDataSection>
+        <avr32gcc.linker.optimization.AllowDirectReferencesToDataSection>True</avr32gcc.linker.optimization.AllowDirectReferencesToDataSection>
+      </AvrGcc32>
+    </ToolchainSettings>
+    <GenerateHexFile>True</GenerateHexFile>
+    <GenerateMapFile>True</GenerateMapFile>
+    <GenerateListFile>True</GenerateListFile>
+    <GenerateEepFile>True</GenerateEepFile>
+    <UsesExternalMakeFile>True</UsesExternalMakeFile>
+    <ExternalMakeFilePath>Makefile</ExternalMakeFilePath>
+    <OutputDirectory />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ToolchainSettings>
+      <AvrGcc32>
+        <avr32gcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</avr32gcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
+        <avr32gcc.compiler.optimization.UseAssemblerForPseudoInstructions>True</avr32gcc.compiler.optimization.UseAssemblerForPseudoInstructions>
+        <avr32gcc.compiler.optimization.DebugLevel>Maximum (-g3)</avr32gcc.compiler.optimization.DebugLevel>
+        <avr32gcc.compiler.warnings.AllWarnings>True</avr32gcc.compiler.warnings.AllWarnings>
+        <avr32gcc.linker.optimization.GarbageCollectUnusedSections>True</avr32gcc.linker.optimization.GarbageCollectUnusedSections>
+        <avr32gcc.linker.optimization.PutReadOnlyDataInWritableDataSection>True</avr32gcc.linker.optimization.PutReadOnlyDataInWritableDataSection>
+        <avr32gcc.linker.optimization.AllowDirectReferencesToDataSection>True</avr32gcc.linker.optimization.AllowDirectReferencesToDataSection>
+        <avr32gcc.assembler.debugging.DebugLevel>Maximum (-g3)</avr32gcc.assembler.debugging.DebugLevel>
+        <avr32gcc.preprocessingassembler.debugging.DebugLevel>Maximum (-g3)</avr32gcc.preprocessingassembler.debugging.DebugLevel>
+      </AvrGcc32>
+    </ToolchainSettings>
+    <GenerateHexFile>True</GenerateHexFile>
+    <GenerateMapFile>True</GenerateMapFile>
+    <GenerateListFile>True</GenerateListFile>
+    <GenerateEepFile>True</GenerateEepFile>
+    <UsesExternalMakeFile>True</UsesExternalMakeFile>
+    <ExternalMakeFilePath>Makefile_Debug</ExternalMakeFilePath>
+    <OutputFile>Star_Push_Button.elf</OutputFile>
+    <OutputDirectory />
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac.c">
+      <SubType>compile</SubType>
+      <Link>mac.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_api.c">
+      <SubType>compile</SubType>
+      <Link>mac_api.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_associate.c">
+      <SubType>compile</SubType>
+      <Link>mac_associate.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_beacon.c">
+      <SubType>compile</SubType>
+      <Link>mac_beacon.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_callback_wrapper.c">
+      <SubType>compile</SubType>
+      <Link>mac_callback_wrapper.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_data_ind.c">
+      <SubType>compile</SubType>
+      <Link>mac_data_ind.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_data_req.c">
+      <SubType>compile</SubType>
+      <Link>mac_data_req.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_disassociate.c">
+      <SubType>compile</SubType>
+      <Link>mac_disassociate.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_dispatcher.c">
+      <SubType>compile</SubType>
+      <Link>mac_dispatcher.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_mcps_data.c">
+      <SubType>compile</SubType>
+      <Link>mac_mcps_data.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_misc.c">
+      <SubType>compile</SubType>
+      <Link>mac_misc.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_orphan.c">
+      <SubType>compile</SubType>
+      <Link>mac_orphan.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_pib.c">
+      <SubType>compile</SubType>
+      <Link>mac_pib.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_poll.c">
+      <SubType>compile</SubType>
+      <Link>mac_poll.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_process_beacon_frame.c">
+      <SubType>compile</SubType>
+      <Link>mac_process_beacon_frame.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_process_tal_tx_frame_status.c">
+      <SubType>compile</SubType>
+      <Link>mac_process_tal_tx_frame_status.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_rx_enable.c">
+      <SubType>compile</SubType>
+      <Link>mac_rx_enable.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_scan.c">
+      <SubType>compile</SubType>
+      <Link>mac_scan.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_security.c">
+      <SubType>compile</SubType>
+      <Link>mac_security.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_start.c">
+      <SubType>compile</SubType>
+      <Link>mac_start.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_sync.c">
+      <SubType>compile</SubType>
+      <Link>mac_sync.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\mac_tx_coord_realignment_command.c">
+      <SubType>compile</SubType>
+      <Link>mac_tx_coord_realignment_command.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mcps_data_conf.c">
+      <SubType>compile</SubType>
+      <Link>usr_mcps_data_conf.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mcps_data_ind.c">
+      <SubType>compile</SubType>
+      <Link>usr_mcps_data_ind.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mcps_purge_conf.c">
+      <SubType>compile</SubType>
+      <Link>usr_mcps_purge_conf.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mlme_associate_conf.c">
+      <SubType>compile</SubType>
+      <Link>usr_mlme_associate_conf.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mlme_associate_ind.c">
+      <SubType>compile</SubType>
+      <Link>usr_mlme_associate_ind.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mlme_beacon_notify_ind.c">
+      <SubType>compile</SubType>
+      <Link>usr_mlme_beacon_notify_ind.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mlme_comm_status_ind.c">
+      <SubType>compile</SubType>
+      <Link>usr_mlme_comm_status_ind.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mlme_disassociate_conf.c">
+      <SubType>compile</SubType>
+      <Link>usr_mlme_disassociate_conf.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mlme_disassociate_ind.c">
+      <SubType>compile</SubType>
+      <Link>usr_mlme_disassociate_ind.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mlme_get_conf.c">
+      <SubType>compile</SubType>
+      <Link>usr_mlme_get_conf.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mlme_orphan_ind.c">
+      <SubType>compile</SubType>
+      <Link>usr_mlme_orphan_ind.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mlme_poll_conf.c">
+      <SubType>compile</SubType>
+      <Link>usr_mlme_poll_conf.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mlme_reset_conf.c">
+      <SubType>compile</SubType>
+      <Link>usr_mlme_reset_conf.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mlme_rx_enable_conf.c">
+      <SubType>compile</SubType>
+      <Link>usr_mlme_rx_enable_conf.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mlme_scan_conf.c">
+      <SubType>compile</SubType>
+      <Link>usr_mlme_scan_conf.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mlme_set_conf.c">
+      <SubType>compile</SubType>
+      <Link>usr_mlme_set_conf.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mlme_start_conf.c">
+      <SubType>compile</SubType>
+      <Link>usr_mlme_start_conf.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\MAC\Src\usr_mlme_sync_loss_ind.c">
+      <SubType>compile</SubType>
+      <Link>usr_mlme_sync_loss_ind.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\PAL\AVR32\AT32UC3B1128\Boards\REB_5_0_STK600\pal_board.c">
+      <SubType>compile</SubType>
+      <Link>pal_board.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\PAL\AVR32\AT32UC3B1128\Boards\REB_5_0_STK600\pal_config.h">
+      <SubType>compile</SubType>
+      <Link>pal_config.h</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\PAL\AVR32\AT32UC3B1128\Boards\REB_5_0_STK600\pal_irq.c">
+      <SubType>compile</SubType>
+      <Link>pal_irq.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\PAL\AVR32\AT32UC3B1128\Src\pal_sio_hub.c">
+      <SubType>compile</SubType>
+      <Link>pal_sio_hub.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\PAL\AVR32\Generic\Src\pal.c">
+      <SubType>compile</SubType>
+      <Link>pal.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\PAL\AVR32\Generic\Src\pal_timer.c">
+      <SubType>compile</SubType>
+      <Link>pal_timer.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\PAL\AVR32\Generic\Src\pal_trx_access.c">
+      <SubType>compile</SubType>
+      <Link>pal_trx_access.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\PAL\AVR32\Generic\Src\pal_uart.c">
+      <SubType>compile</SubType>
+      <Link>pal_uart.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\PAL\AVR32\Generic\Src\pal_utils.c">
+      <SubType>compile</SubType>
+      <Link>pal_utils.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Resources\Buffer_Management\Src\bmm.c">
+      <SubType>compile</SubType>
+      <Link>bmm.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\Resources\Queue_Management\Src\qmm.c">
+      <SubType>compile</SubType>
+      <Link>qmm.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\TAL\AT86RF212\Src\tal.c">
+      <SubType>compile</SubType>
+      <Link>tal.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\TAL\AT86RF212\Src\tal_ed.c">
+      <SubType>compile</SubType>
+      <Link>tal_ed.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\TAL\AT86RF212\Src\tal_init.c">
+      <SubType>compile</SubType>
+      <Link>tal_init.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\TAL\AT86RF212\Src\tal_irq_handler.c">
+      <SubType>compile</SubType>
+      <Link>tal_irq_handler.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\TAL\AT86RF212\Src\tal_pib.c">
+      <SubType>compile</SubType>
+      <Link>tal_pib.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\TAL\AT86RF212\Src\tal_pwr_mgmt.c">
+      <SubType>compile</SubType>
+      <Link>tal_pwr_mgmt.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\TAL\AT86RF212\Src\tal_rx.c">
+      <SubType>compile</SubType>
+      <Link>tal_rx.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\TAL\AT86RF212\Src\tal_rx_enable.c">
+      <SubType>compile</SubType>
+      <Link>tal_rx_enable.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\TAL\AT86RF212\Src\tal_slotted_csma.c">
+      <SubType>compile</SubType>
+      <Link>tal_slotted_csma.c</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\..\TAL\AT86RF212\Src\tal_tx.c">
+      <SubType>compile</SubType>
+      <Link>tal_tx.c</Link>
+    </Compile>
+    <Compile Include="..\..\Src\main.c">
+      <SubType>compile</SubType>
+      <Link>main.c</Link>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\AvrGCC32.targets" />
+</Project>

@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# AvrStudio Solution File, Format Version 11.00
+Project("{D1100916-62DA-4D80-A9B4-55A1E7CCEEB3}") = "Star_Push_Button", "Star_Push_Button.avrgccproj", "{0F8F6972-625D-4C3A-91ED-A716618A2F8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0F8F6972-625D-4C3A-91ED-A716618A2F8F}.Debug|AVR.ActiveCfg = Release|AVR
+		{0F8F6972-625D-4C3A-91ED-A716618A2F8F}.Debug|AVR.Build.0 = Release|AVR
+		{0F8F6972-625D-4C3A-91ED-A716618A2F8F}.Release|AVR.ActiveCfg = Release|AVR
+		{0F8F6972-625D-4C3A-91ED-A716618A2F8F}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

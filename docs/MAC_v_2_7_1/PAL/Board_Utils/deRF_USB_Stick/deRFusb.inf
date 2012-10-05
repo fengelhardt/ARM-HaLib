@@ -1,0 +1,68 @@
+
+[Version]                                               ; Version section
+Signature="$Chicago$"                                           ; All Windows versions
+Class=Ports                                                     ; This is a serial port driver
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}                ; Associated GUID
+Provider=%DE%                                                   ; Driver provider
+DriverVer=01/09/2010, 1.1.1.6                                   ; Driver version, publisher date
+
+[DestinationDirs]                                       ; DestinationDirs section
+DefaultDestDir=12                                               ; Default install directory is \drivers or \IOSubSys
+
+[Manufacturer]                                          ; Manufacturer section
+%DE%=DeMfg, NT, ntamd64                                                      ; Only one manufacturer (DE), models section is named DeMfg
+
+[DeMfg.NT]                                                 ; Models section corresponding to DE
+                                                                ; Identifies the devices with DE Vendor and respective Product ID
+                                                                ; Corresponding Install section is named USBtoSer.Install
+%USBtoSerConv_deNRJ%=USBtoSer.Install,USB\VID_1CF1&PID_0014
+%USBtoSerConv_deRFusb_24E001%=USBtoSer.Install,USB\VID_1CF1&PID_0018
+%USBtoSerConv_deRFusb_14E001%=USBtoSer.Install,USB\VID_1CF1&PID_0019
+%USBtoSerConv_deRFusb_23E00%=USBtoSer.Install,USB\VID_1CF1&PID_001A
+%USBtoSerConv_deRFusb_13E00%=USBtoSer.Install,USB\VID_1CF1&PID_001B
+%USBtoSerConv_deRFusb_13E06%=USBtoSer.Install,USB\VID_1CF1&PID_0027
+%USBtoSerConv_deRFusb_23E06%=USBtoSer.Install,USB\VID_1CF1&PID_0025
+%USBtoSerConv_deRFnode%=USBtoSer.Install,USB\VID_1CF1&PID_001C
+
+[DeMfg.ntamd64]                                                 ; Models section corresponding to DE
+                                                                ; Identifies the devices with DE Vendor and respective Product ID
+                                                                ; Corresponding Install section is named USBtoSer.Install
+%USBtoSerConv_deNRJ%=USBtoSer.Install,USB\VID_1CF1&PID_0014
+%USBtoSerConv_deRFusb_24E001%=USBtoSer.Install,USB\VID_1CF1&PID_0018
+%USBtoSerConv_deRFusb_14E001%=USBtoSer.Install,USB\VID_1CF1&PID_0019
+%USBtoSerConv_deRFusb_23E00%=USBtoSer.Install,USB\VID_1CF1&PID_001A
+%USBtoSerConv_deRFusb_13E00%=USBtoSer.Install,USB\VID_1CF1&PID_001B
+%USBtoSerConv_deRFusb_13E06%=USBtoSer.Install,USB\VID_1CF1&PID_0027
+%USBtoSerConv_deRFusb_23E06%=USBtoSer.Install,USB\VID_1CF1&PID_0025
+%USBtoSerConv_deRFnode%=USBtoSer.Install,USB\VID_1CF1&PID_001C
+
+[USBtoSer.Install]                                      ; Install section
+include=mdmcpq.inf
+CopyFiles=FakeModemCopyFileSection
+AddReg=USBtoSer.AddReg                                          ; Registry keys to add are listed in USBtoSer.AddReg
+
+[USBtoSer.AddReg]                                       ; AddReg section
+HKR,,DevLoader,,*ntkern                                         ;
+HKR,,NTMPDriver,,usbser.sys
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[USBtoSer.Install.Services]                             ; Services section
+AddService=usbser,0x00000002,USBtoSer.AddService                ; Assign usbser as the PnP driver for the device
+
+[USBtoSer.AddService]                                   ; Service install section
+DisplayName=%USBSer%                                            ; Name of the serial driver
+ServiceType=1                                                   ; Service kernel driver
+StartType=3                                                     ; Driver is started by the PnP manager
+ErrorControl=1                                                  ; Warn about errors
+ServiceBinary=%12%\usbser.sys                                   ; Driver filename
+
+[Strings]                                               ; Strings section
+DE="dresden elektronik"                                         ; String value for the DE symbol
+USBtoSerConv_deNRJ="deNRJ"										; String value for deNRJ
+USBtoSerConv_deRFusb_14E001="deRFusb_14E001"	                ; String value for the USBtoSerConv_deRFusb_14E001 symbol
+USBtoSerConv_deRFusb_24E001="deRFusb_24E001"	                ; String value for the USBtoSerConv_deRFusb_24E001 symbol
+USBtoSerConv_deRFusb_13E00="deRFusb_13E00"	                    ; String value for the USBtoSerConv_deRFusb_13E00 symbol
+USBtoSerConv_deRFusb_23E00="deRFusb_23E00"	                    ; String value for the USBtoSerConv_deRFusb_23E00 symbol
+USBtoSerConv_deRFusb_13E06="deRFusb_13E06"	                    ; String value for the USBtoSerConv_deRFusb_13E06 symbol
+USBtoSerConv_deRFusb_23E06="deRFusb_23E06"	                    ; String value for the USBtoSerConv_deRFusb_23E06 symbol
+USBtoSerConv_deRFnode="deRFnode/gateway"                        ; String value for the USBtoSerConv_deRFnode symbol

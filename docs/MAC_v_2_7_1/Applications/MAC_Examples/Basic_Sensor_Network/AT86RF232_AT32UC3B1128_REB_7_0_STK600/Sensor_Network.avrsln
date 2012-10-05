@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# AvrStudio Solution File, Format Version 11.00
+Project("{D1100916-62DA-4D80-A9B4-55A1E7CCEEB3}") = "Sensor_Network", "Sensor_Network.avrgccproj", "{F5E5F128-9F9C-4C82-A8C8-EF82D82B7473}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5E5F128-9F9C-4C82-A8C8-EF82D82B7473}.Debug|AVR.ActiveCfg = Debug|AVR
+		{F5E5F128-9F9C-4C82-A8C8-EF82D82B7473}.Debug|AVR.Build.0 = Debug|AVR
+		{F5E5F128-9F9C-4C82-A8C8-EF82D82B7473}.Release|AVR.ActiveCfg = Release|AVR
+		{F5E5F128-9F9C-4C82-A8C8-EF82D82B7473}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

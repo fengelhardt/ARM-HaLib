@@ -1,0 +1,21 @@
+/**
+ * @file Secure_Star.txt
+ *
+ * @brief  Introduction of the STB Example "Secure Star" using MAC 2006 security
+ *
+ * $Id: Secure_Star.txt 26612 2011-05-11 08:57:04Z sschneid $
+ *
+ * @author    Atmel Corporation: http://www.atmel.com
+ * @author    Support email: avr@atmel.com
+ */
+/*
+ * Copyright (c) 2010, Atmel Corporation All rights reserved.
+ *
+ * Licensed under Atmel’s Limited License Agreement --> EULA.txt
+ */
+
+STB Example - Secure Star (using MAC 2006 security)
+
+The STB example secure star implements a secure network consisting of Coordinator and Device
+based on MAC security.
+The devices associates to the coordinator and transmits secure data to the coordinator.
