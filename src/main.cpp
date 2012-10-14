@@ -25,17 +25,17 @@ LOGGING_DEFINE_OUTPUT(LogType);
 
 #include <arm-halib/external/led.h>
 #include <arm-halib/common/delay.h>
-#include <arm-halib/arm/usbCore.h>
+#include <arm-halib/arm/usb.h>
 
 
 using external::Led;
-using driver::USBCore;
+using driver::UsbFrameLink;
 using common::delay_ms;
 
 Led<17> yellow;
 Led<18> green;
 
-USBCore usb;
+UsbFrameLink usb;
 
 int main() 
 {
