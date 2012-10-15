@@ -45,6 +45,7 @@ int main()
         yellow.toggle();
 
 
+    usb.test();
 
 //    unsigned int i=0;
     while(true)

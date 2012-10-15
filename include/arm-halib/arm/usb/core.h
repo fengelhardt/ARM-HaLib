@@ -96,6 +96,20 @@ namespace usb
             rm.control         = pullUpConnect | txDisable;           
         }
 
+        void test()
+        {
+            volatile RegMap& rm = *reinterpret_cast<volatile RegMap*>(0x0);
+            while(true)
+            {
+                for(uint8_t i=0;i<64;i++)
+                    rm.endpoint1Fifo='A';
+
+                setEndpoint1Bit(endpointPacketReady);
+                while(!(rm.endpoint1Control & endpointTxComplete));
+                clearEndpoint1Bit(endpointTxComplete);
+            }
+        }
+
         static void setEndpointBit(uint32_t bit)
         {
             volatile RegMap& rm = *reinterpret_cast<volatile RegMap*>(0x0);
@@ -107,6 +121,26 @@ namespace usb
         }
 
         static void clearEndpointBit(uint32_t bit)
+        {
+            volatile RegMap& rm = *reinterpret_cast<volatile RegMap*>(0x0);
+            uint32_t temp = rm.endpoint0Control;
+            temp |= endpointFlags;
+            temp &= ~bit;
+            rm.endpoint0Control = temp;
+            SysTickTimer::wait(15, false);
+        }
+
+        static void setEndpoint1Bit(uint32_t bit)
+        {
+            volatile RegMap& rm = *reinterpret_cast<volatile RegMap*>(0x0);
+            uint32_t temp = rm.endpoint0Control;
+            temp |= endpointFlags;
+            temp |= bit;
+            rm.endpoint0Control = temp;
+            SysTickTimer::wait(15, false);
+        }
+
+        static void clearEndpoint1Bit(uint32_t bit)
         {
             volatile RegMap& rm = *reinterpret_cast<volatile RegMap*>(0x0);
             uint32_t temp = rm.endpoint0Control;
@@ -167,6 +201,9 @@ namespace usb
                        txBytes++;
                    }
                    break;
+               default: 
+                   setEndpointBit(endpointForceStall);
+                   return;
            };
 
            log::emit() << "Transmitting " << (uint16_t)txBytes << " Bytes to Host" << log::endl;
@@ -208,7 +245,27 @@ namespace usb
             while(!(rm.endpoint0Control & endpointTxComplete));
             clearEndpointBit(endpointTxComplete);
 
+            setEndpoint1Bit(endpointEnable | (0x3 <<8));
+
             rm.globalState |= configured;
+
+
+        }
+
+        static void sendStatus(SetupData& data)
+        {
+            volatile RegMap& rm = *reinterpret_cast<volatile RegMap*>(0x0);
+            log::emit() << "Request: GET_STATUS" << log::endl;
+
+            setEndpointBit(endpointDir);
+            clearEndpointBit(endpointRxSetup);
+
+            rm.endpoint0Fifo = 0x0;
+            rm.endpoint0Fifo = 0x0;
+
+            setEndpointBit(endpointPacketReady);
+            while(!(rm.endpoint0Control & endpointTxComplete));
+            clearEndpointBit(endpointTxComplete);
         }
 
         static void handleIRQ()
@@ -224,6 +281,12 @@ namespace usb
                 return;
             }
 
+            if(rm.endpoint0Control & endpointStallSend)
+            {
+                log::emit() << "Request error" << log::endl;
+                clearEndpointBit(endpointStallSend);
+            }
+
             if(rm.endpoint0Control & endpointRxSetup)
             {
                 log::emit() << "Got Setup" << log::endl;
@@ -234,7 +297,7 @@ namespace usb
 
                 switch(data.bRequest)
                 {
-                    case( 0): log::emit() << "Request: GET_STATUS" << log::endl;
+                    case( 0): sendStatus(data);
                              break;
                     case( 1): log::emit() << "Request: CLEAR_FEATURE" << log::endl;
                              break;

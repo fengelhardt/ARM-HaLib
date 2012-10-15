@@ -22,6 +22,8 @@ namespace usb
     static const uint32_t endpointTxComplete     = 1<<0;
     static const uint32_t endpointFlags          = 0x4f;
     static const uint32_t endpointPacketReady    = 1<<4;
+    static const uint32_t endpointForceStall     = 1<<5;
+    static const uint32_t endpointStallSend      = 1<<3;
 
     union RegMap{
         struct{
@@ -44,10 +46,12 @@ namespace usb
                 struct{
                     uint8_t __pad2[0x30];
                     uint32_t endpoint0Control;
+                    uint32_t endpoint1Control;
                 };
                 struct{
                     uint8_t __pad3[0x50];
                     uint32_t endpoint0Fifo;
+                    uint32_t endpoint1Fifo;
                 };
                 struct{
                     uint8_t __pad4[0x74];
