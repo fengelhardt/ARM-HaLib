@@ -47,11 +47,15 @@ namespace usb
                     uint8_t __pad2[0x30];
                     uint32_t endpoint0Control;
                     uint32_t endpoint1Control;
+                    uint32_t endpoint2Control;
+                    uint32_t endpoint3Control;
                 };
                 struct{
                     uint8_t __pad3[0x50];
                     uint32_t endpoint0Fifo;
                     uint32_t endpoint1Fifo;
+                    uint32_t endpoint2Fifo;
+                    uint32_t endpoint3Fifo;
                 };
                 struct{
                     uint8_t __pad4[0x74];

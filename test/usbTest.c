@@ -12,6 +12,7 @@ void init()
     libusb_init(NULL);
     libusb_set_debug(NULL, 3);
     handle = libusb_open_device_with_vid_pid(NULL, 0, 0);
+    
     if(!handle)
     {
         fprintf(stderr, "Error: no such device %04x:%04x\n", 0, 0);
@@ -19,6 +20,14 @@ void init()
     }
     else
         printf("Found device %04x:%04x\n", 0, 0);
+    int res = libusb_claim_interface(handle, 0);
+    if(res)
+    {
+        fprintf(stderr, "Error: could not claim interface 0\n");
+        terminate();
+    }
+    else
+        printf("claimed interface 0\n");
 }
 
 void terminate()
@@ -49,15 +58,15 @@ void reportError(int error)
 
 int main()
 {
-    uint8_t buffer[65];
-    buffer[64]='\0';
+    uint8_t buffer[9];
+    buffer[8]='\0';
 
-    init();
+        init();
 
     while(1)
     {
         int transferred = 0;
-        int res = libusb_interrupt_transfer( handle, 0x81, buffer, 64, &transferred, 1000);
+        int res = libusb_interrupt_transfer( handle, 0x83, buffer, 8, &transferred, 1000);
         if(res)
         {
             reportError(res);
@@ -65,7 +74,7 @@ int main()
         }
         printf("got %u bytes\n", transferred);
         buffer[transferred]='\0';
-        printf("%s", buffer);
+        printf("%s\n", buffer);
     }
     return 0;
 }

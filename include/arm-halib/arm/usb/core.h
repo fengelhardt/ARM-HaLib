@@ -61,10 +61,10 @@ namespace usb
     EndpointDescriptor epDesc ={
                 sizeof(EndpointDescriptor),
                 Descriptors::endpoint,
-                0x81,
+                0x83,
                 0x3,
-                64,
-                1
+                8,
+                255
     };
 
     struct Core
@@ -93,20 +93,22 @@ namespace usb
             rm.interruptController.interruptEnable   = peripheralId;
            
             rm.interruptClear  = clearInterrupts;
-            rm.control         = pullUpConnect | txDisable;           
+            rm.control         = pullUpConnect | txDisable;
         }
 
         void test()
         {
             volatile RegMap& rm = *reinterpret_cast<volatile RegMap*>(0x0);
+            while(!(rm.globalState & configured));
             while(true)
             {
-                for(uint8_t i=0;i<64;i++)
-                    rm.endpoint1Fifo='A';
+                log::emit() << "Transmit test data" << log::endl;
+                for(uint8_t i=0;i<8;i++)
+                    rm.endpoint3Fifo='A';
 
-                setEndpoint1Bit(endpointPacketReady);
-                while(!(rm.endpoint1Control & endpointTxComplete));
-                clearEndpoint1Bit(endpointTxComplete);
+                setEndpoint3Bit(endpointPacketReady);
+                while(!(rm.endpoint3Control & endpointTxComplete));
+                clearEndpoint3Bit(endpointTxComplete);
             }
         }
 
@@ -130,23 +132,23 @@ namespace usb
             SysTickTimer::wait(15, false);
         }
 
-        static void setEndpoint1Bit(uint32_t bit)
+        static void setEndpoint3Bit(uint32_t bit)
         {
             volatile RegMap& rm = *reinterpret_cast<volatile RegMap*>(0x0);
-            uint32_t temp = rm.endpoint0Control;
+            uint32_t temp = rm.endpoint3Control;
             temp |= endpointFlags;
             temp |= bit;
-            rm.endpoint0Control = temp;
+            rm.endpoint3Control = temp;
             SysTickTimer::wait(15, false);
         }
 
-        static void clearEndpoint1Bit(uint32_t bit)
+        static void clearEndpoint3Bit(uint32_t bit)
         {
             volatile RegMap& rm = *reinterpret_cast<volatile RegMap*>(0x0);
-            uint32_t temp = rm.endpoint0Control;
+            uint32_t temp = rm.endpoint3Control;
             temp |= endpointFlags;
             temp &= ~bit;
-            rm.endpoint0Control = temp;
+            rm.endpoint3Control = temp;
             SysTickTimer::wait(15, false);
         }
 
@@ -245,11 +247,10 @@ namespace usb
             while(!(rm.endpoint0Control & endpointTxComplete));
             clearEndpointBit(endpointTxComplete);
 
-            setEndpoint1Bit(endpointEnable | (0x3 <<8));
+            setEndpoint3Bit(0x7 << 8);
+            setEndpoint3Bit(endpointEnable);
 
             rm.globalState |= configured;
-
-
         }
 
         static void sendStatus(SetupData& data)
@@ -271,10 +272,12 @@ namespace usb
         static void handleIRQ()
         {
             volatile RegMap& rm = *reinterpret_cast<volatile RegMap*>(0x0);
+            log::emit() << "Got interrupt: " << log::hex << rm.interruptStatus << log::dec << log::endl;
             if(rm.interruptStatus & busReset)
             {
                 log::emit() << "USB Bus reset " << log::endl;
-                rm.interruptClear   = busReset;
+                rm.interruptClear   = 0xffffffff;
+                rm.interruptDisable = 0xffffffff;
                 rm.interruptEnable  = endpoint0Interrupt;
                 setEndpointBit(endpointEnable);
                 rm.control          = pullUpConnect;
