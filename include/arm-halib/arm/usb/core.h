@@ -4,6 +4,7 @@
 #include <arm-halib/common/delay.h>
 #include "descriptors.h"
 #include "regmap.h"
+#include <arm-halib/arm/locking.h>
 
 namespace arm_halib{
 namespace driver{
@@ -63,7 +64,7 @@ namespace usb
                 Descriptors::endpoint,
                 0x83,
                 0x3,
-                8,
+                64,
                 255
     };
 
@@ -96,20 +97,23 @@ namespace usb
             rm.control         = pullUpConnect | txDisable;
         }
 
-        void test()
+        bool send(const uint8_t* buffer, uint8_t size)
         {
             volatile RegMap& rm = *reinterpret_cast<volatile RegMap*>(0x0);
-            while(!(rm.globalState & configured));
-            while(true)
-            {
-                log::emit() << "Transmit test data" << log::endl;
-                for(uint8_t i=0;i<8;i++)
-                    rm.endpoint3Fifo='A';
+            if(!(rm.globalState & configured))
+                return false;
 
-                setEndpoint3Bit(endpointPacketReady);
-                while(!(rm.endpoint3Control & endpointTxComplete));
+            if(rm.endpoint3Control & endpointTxComplete)
                 clearEndpoint3Bit(endpointTxComplete);
-            }
+
+            if(rm.endpoint3Control & endpointPacketReady)
+                clearEndpoint3Bit(endpointPacketReady);
+
+            for(uint8_t i=0;i<size;i++)
+                rm.endpoint3Fifo=buffer[i];
+
+            setEndpoint3Bit(endpointPacketReady);            
+            return true;
         }
 
         static void setEndpointBit(uint32_t bit)
@@ -119,7 +123,7 @@ namespace usb
             temp |= endpointFlags;
             temp |= bit;
             rm.endpoint0Control = temp;
-            SysTickTimer::wait(15, false);
+            common::delay_us(1);
         }
 
         static void clearEndpointBit(uint32_t bit)
@@ -129,7 +133,7 @@ namespace usb
             temp |= endpointFlags;
             temp &= ~bit;
             rm.endpoint0Control = temp;
-            SysTickTimer::wait(15, false);
+            common::delay_us(1);
         }
 
         static void setEndpoint3Bit(uint32_t bit)
@@ -139,7 +143,7 @@ namespace usb
             temp |= endpointFlags;
             temp |= bit;
             rm.endpoint3Control = temp;
-            SysTickTimer::wait(15, false);
+            common::delay_us(1);
         }
 
         static void clearEndpoint3Bit(uint32_t bit)
@@ -149,7 +153,7 @@ namespace usb
             temp |= endpointFlags;
             temp &= ~bit;
             rm.endpoint3Control = temp;
-            SysTickTimer::wait(15, false);
+            common::delay_us(1);
         }
 
         static void sendDescriptor(SetupData& data)
@@ -271,6 +275,7 @@ namespace usb
 
         static void handleIRQ()
         {
+            GlobalInterruptLock lock;
             volatile RegMap& rm = *reinterpret_cast<volatile RegMap*>(0x0);
             log::emit() << "Got interrupt: " << log::hex << rm.interruptStatus << log::dec << log::endl;
             if(rm.interruptStatus & busReset)
@@ -327,9 +332,11 @@ namespace usb
                     case(12): log::emit() << "Request: SYNC_FRAME" << log::endl;
                              break;
                     default : log::emit() << "Request: Unknown" << log::endl;
+                             break;
                 }
                 return;
            }
+           rm.interruptClear = 0xffffffff;
 
 //           log::emit() << "UDP: Something else happend" << log::endl;
         }
