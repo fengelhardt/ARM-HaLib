@@ -14,6 +14,9 @@ INCLUDE            := ${PLATFORM_DIR}/include
 
 PLATFORM_ASFLAGS   := -mcpu=cortex-m3                   \
 		              -mthumb                           \
+  			          -D USB_MUL=${PLL_MULTIPLICATOR}   \
+		              -D USB_DIV=${PLL_DIVISOR}         \
+			          -D USB_EXP=${PRESCALER_EXPONENT} \
 			          -D PLL_MUL=${PLL_MULTIPLICATOR}   \
 		              -D PLL_DIV=${PLL_DIVISOR}         \
 			          -D PRES_EXP=${PRESCALER_EXPONENT} \

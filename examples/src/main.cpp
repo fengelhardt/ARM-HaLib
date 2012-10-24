@@ -44,6 +44,7 @@ struct LogUsb : public driver::UsbFrameLink
             send((uint8_t*)buffer, size);
             size=0;
         }
+        return *this;
     }
 };
 
