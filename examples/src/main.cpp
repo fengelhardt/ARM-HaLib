@@ -15,6 +15,7 @@ struct LogUart : public Uart0
     {
         while(!ready());
         put(c);
+        return *this;
     }
 };
 
