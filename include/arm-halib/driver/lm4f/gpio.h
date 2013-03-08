@@ -22,7 +22,10 @@ namespace driver
             rm.highSpeedBank  |= 0x1 << RegMap::bank;
             delay_us(1);
          
+            rm.lock = 0x4C4F434BUL;
+            rm.commit|=(0x1 << Config::pin);
             rm.active     |= 0x1 << Config::pin;
+            rm.lock = 0x1;
           }
 
           void triState(bool value)
@@ -109,6 +112,21 @@ namespace driver
           {
               RegMap& rm = *static_cast<RegMap*>(0);
               return rm.data[0x1 << Config::pin];
+          }
+
+          bool pullup()
+          {
+            RegMap& rm = *static_cast<RegMap*>(0);
+            return rm.pullup&(0x1 << Config::pin);
+          }
+
+          void pullup(bool value)
+          {
+            RegMap& rm = *static_cast<RegMap*>(0);
+            if(value)
+              rm.pullup|=0x1 << Config::pin;
+            else
+              rm.pullup&=~(0x1 << Config::pin);
           }
       };
 

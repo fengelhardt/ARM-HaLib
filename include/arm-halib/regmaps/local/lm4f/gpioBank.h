@@ -44,13 +44,37 @@ namespace lm4f
 
                 struct
                 {
-                    uint8_t  __offset3[0x51C];
+                    uint8_t  __offset3[0x510];
+                    uint8_t pullup;
+                };
+
+                struct
+                {
+                    uint8_t  __offset4[0x514];
+                    uint8_t pulldown;
+                };
+
+                struct
+                {
+                    uint8_t  __offset5[0x51C];
                     uint8_t active;
                 };
 
                 struct
                 {
-                    uint8_t  __offset4[0x52C];
+                    uint8_t  __offset6[0x520];
+                    uint32_t lock;
+                };
+
+                struct
+                {
+                    uint8_t  __offset7[0x524];
+                    uint8_t commit;
+                };
+
+                struct
+                {
+                    uint8_t  __offset8[0x52C];
                     uint32_t specialSelect;
                 };
             };

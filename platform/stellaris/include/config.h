@@ -17,6 +17,8 @@ namespace stellaris
   using arm_halib::driver::PwmChannels;
   using arm_halib::regmaps::local::GpioBankType;
   using arm_halib::regmaps::local::GpioBanks;
+  using arm_halib::driver::GpioPin;
+  using arm_halib::regmaps::local::GpioBank;
 
   struct LogUart : public arm_halib::driver::Uart0
   {
@@ -65,5 +67,23 @@ namespace stellaris
   typedef PwmGenerator<BlueConfig> BlueLed;
   typedef PwmGenerator<GreenConfig> GreenLed;
 
+  struct SW1Config
+  {
+    typedef GpioBank<GpioBanks::f> RegMap;
+    static const uint8_t pin = 4;
+    static const bool special = false;
+    static const bool output = false;
+  };
+
+  struct SW2Config
+  {
+    typedef GpioBank<GpioBanks::f> RegMap;
+    static const uint8_t pin = 0;
+    static const bool special = false;
+    static const bool output = false;
+  };
+
+  typedef GpioPin<SW1Config> SW1;
+  typedef GpioPin<SW2Config> SW2;
 }
 }
