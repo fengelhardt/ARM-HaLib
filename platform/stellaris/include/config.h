@@ -2,6 +2,7 @@
 
 #include <uart0.h>
 #include <pwmGenerator.h>
+#include <button.h>
 #include <arm-halib/regmaps/local.h>
 #include <logging/logging.h>
 
@@ -17,8 +18,10 @@ namespace stellaris
   using arm_halib::driver::PwmChannels;
   using arm_halib::regmaps::local::GpioBankType;
   using arm_halib::regmaps::local::GpioBanks;
-  using arm_halib::driver::GpioPin;
   using arm_halib::regmaps::local::GpioBank;
+  using arm_halib::driver::Button;
+  using arm_halib::driver::Buttons;
+  using arm_halib::driver::ButtonSetup;
 
   struct LogUart : public arm_halib::driver::Uart0
   {
@@ -71,19 +74,17 @@ namespace stellaris
   {
     typedef GpioBank<GpioBanks::f> RegMap;
     static const uint8_t pin = 4;
-    static const bool special = false;
-    static const bool output = false;
+    static const ButtonSetup setup = Buttons::pullup;
   };
 
   struct SW2Config
   {
     typedef GpioBank<GpioBanks::f> RegMap;
     static const uint8_t pin = 0;
-    static const bool special = false;
-    static const bool output = false;
+    static const ButtonSetup setup = Buttons::pullup;
   };
 
-  typedef GpioPin<SW1Config> SW1;
-  typedef GpioPin<SW2Config> SW2;
+  typedef Button<SW1Config> SW1;
+  typedef Button<SW2Config> SW2;
 }
 }

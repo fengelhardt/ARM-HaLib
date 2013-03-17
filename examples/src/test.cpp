@@ -38,10 +38,8 @@ int main()
     platform::SW1 sw1;
     platform::SW2 sw2;
 
-    sw1.pullup(true);
-    sw2.pullup(true);
-
-    log::emit() << " SW2:" << (sw2.pullup() ? "true" : "false") << log::endl;
+    bool sw1old=0, sw2old=0;
+    int sw1cnt=0, sw2cnt=0;
 
     red.dutyCycle(1100);
     blue.dutyCycle(1100);
@@ -57,7 +55,7 @@ int main()
 
     while(true)
     {   
-    	h += 10;
+    	h += 1;
     	if(h>1000) h=0;
 
     	hsv2rgb();
@@ -66,13 +64,20 @@ int main()
         blue.value(g);
         green.value(b);
 
+        bool sw1v = sw1.value();
+        bool sw2v = sw2.value();
+        sw1cnt += sw1v != sw1old;
+        sw2cnt += sw2v != sw2old;
+        sw1old = sw1v;
+        sw2old = sw2v;
+
         log::emit() << " r" << red.value();
         log::emit() << " g" << green.value();
         log::emit() << " b" << blue.value();
-        log::emit() << " SW1:" << (sw1.value() ? "true" : "false");
-        log::emit() << " SW2:" << (sw2.value() ? "true" : "false") << "                       \r";
+        log::emit() << " SW1:" << sw1cnt;
+        log::emit() << " SW2:" << sw2cnt << "                                            \r";
 
-        delay_ms(50);
+        delay_ms(1);
     }
     return 0;
 }
